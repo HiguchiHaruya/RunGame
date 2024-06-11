@@ -7,7 +7,6 @@ public class EnemyManager : MonoBehaviour
 {
     float _moveSpeed = 45;
     Rigidbody rb;
-    float _genarateTime = 2;
     void Start()
     {
         rb = GetComponent<Rigidbody>();

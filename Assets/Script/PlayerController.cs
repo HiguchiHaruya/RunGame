@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10;
     Rigidbody rb;
     private Animator animator;
+    private int currentPlayerCount = 1;
     public static PlayerController PlayerInstance { get; private set; }
 
     private void Awake()
@@ -32,4 +33,5 @@ public class PlayerController : MonoBehaviour
     {
         animator.speed += speed;
     }
+   
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     int poolsize = 10;
     float interval = 1.5f; //スポーン間隔
     private List<GameObject> Enemypool; //オブジェクトプール
-    bool isEnd = false; //ゲームの終了判定
+    public bool isEnd = false; //ゲームの終了判定
     public Text scoreTxt;
 
 
@@ -41,15 +41,22 @@ public class GameManager : MonoBehaviour
     {
         _score += p;
     }
-
-
-
-
-
-
-
-
-
+    int currentPlayerCount = 1;
+    public GameObject PlayerPrefab;
+    public void SetPlayerCount(int r)
+    {
+        if (r == 0)
+        {
+            for (int i = 0; i < currentPlayerCount * 2; ++i)
+            {
+                Instantiate(PlayerPrefab);
+                PlayerPrefab.transform.position =
+                    new Vector3(PlayerPrefab.transform.position.x + i, 0, 0);
+            }
+        }
+        else if (r == 1) { }
+        else { }
+    }
     //-------------Enemy関連------------------
     IEnumerator SpownEnemy()
     {
