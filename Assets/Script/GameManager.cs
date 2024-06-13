@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject player;
     public static GameManager Instance { get; private set; }
     public int _score = 0;
     public GameObject EnemyPrefab;
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else { Destroy(gameObject); }
-
+        Instantiate(player, new Vector3(0, -0.189999998f, 19.7600002f), new Quaternion(0, 1, 0, 0));
         Enemypool = new List<GameObject>(); //èâä˙âª
         for (int i = 0; i < poolsize; i++)
         {
@@ -41,22 +43,7 @@ public class GameManager : MonoBehaviour
     {
         _score += p;
     }
-    int currentPlayerCount = 1;
-    public GameObject PlayerPrefab;
-    public void SetPlayerCount(int r)
-    {
-        if (r == 0)
-        {
-            for (int i = 0; i < currentPlayerCount * 2; ++i)
-            {
-                Instantiate(PlayerPrefab);
-                PlayerPrefab.transform.position =
-                    new Vector3(PlayerPrefab.transform.position.x + i, 0, 0);
-            }
-        }
-        else if (r == 1) { }
-        else { }
-    }
+
     //-------------Enemyä÷òA------------------
     IEnumerator SpownEnemy()
     {

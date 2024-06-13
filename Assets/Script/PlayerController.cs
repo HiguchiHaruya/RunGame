@@ -33,5 +33,23 @@ public class PlayerController : MonoBehaviour
     {
         animator.speed += speed;
     }
-   
+
+    [SerializeField] GameObject PlayerPrefab;
+    public void SetPlayerCount(int r)
+    {
+        if (r == 0)
+        {
+            for (int i = 0; i < currentPlayerCount * 2; ++i)
+            {
+                var player = Instantiate(PlayerPrefab, new Vector3(PlayerPrefab.transform.position.x + i, 0, 0)
+                     , Quaternion.identity);
+                Debug.Log
+                    ($"クローン:{player} 位置:{player.transform.position}" +
+                    $"スケール:{player.transform.localScale}");
+            }
+        }
+        else if (r == 1) { }
+        else { }
+    }
+
 }

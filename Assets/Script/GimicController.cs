@@ -6,7 +6,7 @@ using UnityEngine;
 public class GimicController : MonoBehaviour
 {
     public static GimicController Instance { get; private set; }
-    int interval = 8;
+    int interval = 3;
     int poolsize = 5;
     private List<GameObject> GimicPool;
     public GameObject GimicPrefab;
@@ -28,8 +28,8 @@ public class GimicController : MonoBehaviour
         while (!GameManager.Instance.isEnd) //ゲーム終了まで回り続ける
         {
             Vector3 pos = new Vector3(Random.Range(7.31f, -0.85f), -3.96f, -87.6f); //ランダムな位置
-            GameObject enemy = GetGimic(); //enemyを取得
-            enemy.transform.position = pos; //enemyの位置設定
+            GameObject enemy = GetGimic(); 
+            enemy.transform.position = pos; 
             yield return new WaitForSeconds(interval); //設定した時間待つ
         }
     }

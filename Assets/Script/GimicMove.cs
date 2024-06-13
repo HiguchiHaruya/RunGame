@@ -6,18 +6,18 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class GimicMove : MonoBehaviour
 {
-    public Text cubetxt;
+    [SerializeField] Text cubetxt;
     int movespeed = 45;
     Rigidbody _rb;
     int r = 0;
     void Start()
     {
-        r = Random.Range(0, 3);
+        r = Random.Range(0, 2);
+        Debug.Log(r);
         _rb = GetComponent<Rigidbody>();
-        cubetxt = GetComponent<Text>();
-        if (r == 0) { cubetxt.text = "2x".ToString(); }
-        if (r == 1) { cubetxt.text = "未定".ToString(); }
-        if (r == 2) { cubetxt.text = "未定".ToString(); }
+        if (r == 0) { cubetxt.text = "2x"; }
+        if (r == 1) { cubetxt.text = "2x"; }
+        if (r == 2) { cubetxt.text = "2x"; }
     }
 
     void Update()
@@ -29,7 +29,7 @@ public class GimicMove : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             movespeed += 10;
-            GameManager.Instance.SetPlayerCount(0); //でバック。r忘れずにいれろ
+            PlayerController.PlayerInstance.SetPlayerCount(0);
             GimicController.Instance.ReturnGimic(gameObject);
         }
     }
