@@ -15,9 +15,9 @@ public class GimicMove : MonoBehaviour
         r = Random.Range(0, 2);
         Debug.Log(r);
         _rb = GetComponent<Rigidbody>();
-        if (r == 0) { cubetxt.text = "2x"; }
-        if (r == 1) { cubetxt.text = "2x"; }
-        if (r == 2) { cubetxt.text = "2x"; }
+        if (r == 0) { cubetxt.text = "+2"; }
+        if (r == 1) { cubetxt.text = "‚«‚Ü‚Á‚Ä‚È‚¢"; }
+        if (r == 2) { cubetxt.text = "‚«‚Ü‚Á‚Ä‚È‚¢"; }
     }
 
     void Update()
@@ -30,6 +30,10 @@ public class GimicMove : MonoBehaviour
         {
             movespeed += 10;
             PlayerController.PlayerInstance.SetPlayerCount(0);
+            GimicController.Instance.ReturnGimic(gameObject);
+        }
+        if (other.gameObject.CompareTag("Finish"))
+        {
             GimicController.Instance.ReturnGimic(gameObject);
         }
     }

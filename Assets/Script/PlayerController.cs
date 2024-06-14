@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     private Animator animator;
     private int currentPlayerCount = 1;
+    [SerializeField] GameObject Enemy;
+    [SerializeField] GameObject PlayerClone;
     public static PlayerController PlayerInstance { get; private set; }
 
     private void Awake()
@@ -34,15 +36,16 @@ public class PlayerController : MonoBehaviour
         animator.speed += speed;
     }
 
-    [SerializeField] GameObject PlayerPrefab;
     public void SetPlayerCount(int r)
     {
         if (r == 0)
         {
             for (int i = 0; i < currentPlayerCount * 2; ++i)
             {
-                var player = Instantiate(PlayerPrefab, new Vector3(PlayerPrefab.transform.position.x + i, 0, 0)
-                     , Quaternion.identity);
+                var player = Instantiate(PlayerClone, new Vector3(this.transform.position.x + i ,
+                    this.transform.position.y,this.transform.position.z)
+                     , Quaternion.Euler(0,180,0));
+                player.transform.SetParent(this.transform);
                 Debug.Log
                     ($"クローン:{player} 位置:{player.transform.position}" +
                     $"スケール:{player.transform.localScale}");
